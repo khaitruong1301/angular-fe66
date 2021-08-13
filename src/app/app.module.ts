@@ -14,6 +14,7 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PropsModule } from './Props/Props.module';
 
 registerLocaleData(en);
 
@@ -22,7 +23,7 @@ registerLocaleData(en);
     AppComponent, //Các component trong module này (Mỗi component sinh ra phải ở trong 1 module)
   ],
   imports: [
-    BrowserModule,BaiTapLayoutModule,DataBindingModule,DirectiveModule, FormsModule, HttpClientModule, BrowserAnimationsModule //nơi chèn các module khác vào
+    BrowserModule,BaiTapLayoutModule,DataBindingModule,DirectiveModule, FormsModule, HttpClientModule, BrowserAnimationsModule,PropsModule //nơi chèn các module khác vào
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }], //nơi chèn các service vào
   bootstrap: [AppComponent] //Các component có thể sử dụng được trong file index.html

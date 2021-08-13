@@ -120,7 +120,15 @@ import { Component, OnInit } from '@angular/core';
                     <i nz-icon nzType="poweroff"></i>
                     Click me!
                     </button>
-                </div>
+            </div>
+            <div style="margin-bottom:500px;height:500px">
+                <h3>Directive material</h3>
+                <button mat-raised-button color="accent">Accent</button>
+
+                <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+            </div>
         </div>
     `
 })
