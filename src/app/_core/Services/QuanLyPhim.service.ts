@@ -22,5 +22,11 @@ export class QuanLyPhimService {
     }
 
 
+    layChiTietPhim(idPhim:string): Observable<any>{
+        
+        let result = this.httpClient.get(`http://movieapi.cyberlearn.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${idPhim}`);
+        return result;
+    }
+
 
 }

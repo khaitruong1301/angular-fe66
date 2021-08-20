@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
     selector: 'app-home-template',
     template: `
         <app-header-home></app-header-home>
-        Home template
+   
         <router-outlet></router-outlet>
     
     `
