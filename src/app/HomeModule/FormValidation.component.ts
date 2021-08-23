@@ -1,5 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { QuanLyNguoiDungService } from '../_core/Services/QuanLyNguoiDung.service';
+import { QuanLyPhimService } from '../_core/Services/QuanLyPhim.service';
+
+
+// interface AppState {
+//     ModalState:ModalState
+// }
 
 @Component({
     selector: 'app-form-validation',
@@ -116,9 +125,9 @@ import { NgForm } from '@angular/forms';
 })
 
 export class FormValidationComponent implements OnInit {
-    isEdit:boolean = false;
+    isEdit: boolean = false;
 
-    changeEdit(edit:boolean) {
+    changeEdit(edit: boolean) {
         this.isEdit = edit;
     }
 
@@ -129,15 +138,30 @@ export class FormValidationComponent implements OnInit {
         { taiKhoan: 'nguyenvanb', hoTen: 'Nguyễn Văn B', matKhau: '123123123', email: 'nguyenvanb@gmail.com', soDt: '09090909', maNhom: 'GP02' },
     ];
 
-    constructor() { }
+    constructor(private nguoiDungService: QuanLyNguoiDungService) { }
 
     chinhSua(nguoiDungEdit: any) {
         this.frmDangKy.setValue(nguoiDungEdit);
     }
 
-    ngOnInit() { }
+    ngOnInit() {
 
-    dangKy(value: NgForm) {
+
+
+
+    }
+
+    async dangKy(value: NgForm) {
+        //Call api
+        try {
+            const result = await this.nguoiDungService.dangKy(value).toPromise();
+
+            console.log('result',result)
+        }catch(error) {
+            console.log('error',error.error)
+        }
+       
+
         console.log('value', value);
     }
 }
