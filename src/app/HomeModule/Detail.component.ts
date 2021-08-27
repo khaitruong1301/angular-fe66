@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { QuanLyPhimService } from '../_core/Services/QuanLyPhim.service';
 
 @Component({
@@ -20,34 +21,42 @@ import { QuanLyPhimService } from '../_core/Services/QuanLyPhim.service';
     </div>`
 })
 
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
 
     id:string = '';
     idSnapShot:string = '';
     chiTietPhim:any ={};
+    subParam!:Subscription;
+    subService!:Subscription;
 
     constructor(private atvRoute:ActivatedRoute,private qlPhim:QuanLyPhimService,private title:Title) { }
+    ngOnDestroy(): void {
+        if(this.subParam) {
+            this.subParam.unsubscribe()
+        }
+        if(this.subService){
+            this.subService.unsubscribe()
+        }
+    }
     ngOnInit() { 
 
         console.log(this.atvRoute.snapshot.params.id) 
 
         // this.idSnapShot = this.atvRoute.snapshot.params.id;
-        this.atvRoute.params.subscribe((params)=>{
+       this.subParam = this.atvRoute.params.subscribe((params)=>{
             this.id = params.id;
             //Sau khi lấy dữ liệu param => gọi api
             // this.layChiTietPhim(this.id);
             this.layChiTietPhimAsync(this.id);
         })
-
-
-        this.atvRoute.queryParams.subscribe((params) => {
+        this.subParam = this.atvRoute.queryParams.subscribe((params) => {
             console.log('params',params)
             this.title.setTitle(params.tenPhim);
         })
     }
 
     layChiTietPhim(idPhim:string) {
-        this.qlPhim.layChiTietPhim(idPhim).subscribe((result) => {
+       this.subService = this.qlPhim.layChiTietPhim(idPhim).subscribe((result) => {
             this.chiTietPhim = result.content;
             console.log('Chi tiết phim',this.chiTietPhim)
         },error=>{

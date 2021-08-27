@@ -23,6 +23,12 @@ import { Component, OnInit } from '@angular/core';
                     <li class="nav-item">
                         <a routerLink="/about" class="nav-link">About</a>
                     </li>
+                    <li class="nav-item">
+                        <a routerLink="/demopipe" class="nav-link">Demo pipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/demolifecycle" class="nav-link">Demo lifecycle</a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search">

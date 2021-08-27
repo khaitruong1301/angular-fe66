@@ -12,7 +12,7 @@ import { QuanLyPhimService } from '../_core/Services/QuanLyPhim.service';
                         <img [src]="phim.hinhAnh" class="w-100" alt="..." />
                         <div class="card-body">
                             <p>{{phim.tenPhim}}</p>
-                            <p>{{phim.moTa}}</p>
+                            <p>{{phim.moTa | shortcut: 100}}</p>
                             <a class="btn btn-success" [routerLink]="['detail',phim.maPhim]">Xem chi tiết </a>
 
                             <a class="btn btn-danger ml-2" routerLink="/detail/{{phim.maPhim}}">Xem chi tiết </a>
